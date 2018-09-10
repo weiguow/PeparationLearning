@@ -1,1 +1,0 @@
-/usr/bin/c++  -g   CMakeFiles/Memento.dir/Memento.cpp.o CMakeFiles/Memento.dir/GameScence.cpp.o  -o Memento 
