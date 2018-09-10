@@ -1,2 +1,6 @@
 add_subdirectory(zhang_yi_xin)
 add_subdirectory(wang_qian_nan)
+add_subdirectory(wang_wei_guo)
+add_subdirectory(ma_kun)
+add_subdirectory(li_le_lr)
+add_subdirectory(zhang_hong_tai)
