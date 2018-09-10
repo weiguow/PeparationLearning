@@ -1,1 +1,3 @@
-add_subdirectory()
+add_subdirectory(DesignPatterns_Bridge)
+add_subdirectory(DesignPatterns_Iterator)
+add_subdirectory(DesignPatterns_Mediator)
