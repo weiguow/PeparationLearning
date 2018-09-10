@@ -1,1 +1,0 @@
-/usr/bin/c++  -g   CMakeFiles/Adapter.dir/ClassAdapter.cpp.o CMakeFiles/Adapter.dir/ObjectAdapter.cpp.o CMakeFiles/Adapter.dir/Method.cpp.o  -o Adapter 
