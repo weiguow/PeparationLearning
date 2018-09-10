@@ -1,3 +1,0 @@
-/home/wqn/CLionProjects/Memento/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/wqn/CLionProjects/Memento/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/wqn/CLionProjects/Memento/cmake-build-debug/CMakeFiles/Memento.dir

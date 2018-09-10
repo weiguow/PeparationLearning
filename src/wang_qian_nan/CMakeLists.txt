@@ -1,2 +1,0 @@
-add_subdirectory(Adapter)
-add_subdirectory(Memento)
