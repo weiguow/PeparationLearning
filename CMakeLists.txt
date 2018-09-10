@@ -15,4 +15,4 @@ set(CMAKE_CXX_STANDARD 14)
 #        main.cpp)
 #
 add_subdirectory(src)
-add_subdirectory(Knowledge)
+add_subdirectory(knowledge)
