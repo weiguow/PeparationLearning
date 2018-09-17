@@ -1,0 +1,8 @@
+cmake_minimum_required(VERSION 3.12)
+project(DesignPatterns_Observer)
+
+set(CMAKE_CXX_STANDARD 11)
+
+add_executable(DesignPatterns_Observer main.cpp)
+add_executable(DesignPatterns_Observer1 Observer.cpp)
+add_executable(DesignPatterns_Observer2 ShapeObserver.cpp)
