@@ -2,16 +2,16 @@
 #include <string>
 using namespace std;
 //定义各商品的价格
-const int ESPRESSO_PRICE = 25;
-const int DRAKROAST_PRICE = 20;
-const int MOCHA_PRICE = 10;
-const int WHIP_PRICE = 8;
+const int kEspressoPrice = 25;
+const int kDarkRoastPrice = 20;
+const int kMochaPrice = 10;
+const int kWhipPrice = 8;
 
 class Beverage{//饮料
 protected:
     string description;
 public:
-    virtual string getDescription(){//这里virtual不能省，不然找不到上一级的Beverage的了
+    virtual string get_description(){
         return description;
     }
     virtual int cost()=0;
@@ -26,10 +26,10 @@ protected:
 class Espresso : public Beverage{//蒸馏咖啡
 public:
     Espresso(){
-        description="Espresso";
+        description = "Espresso";
     }
     int cost(){
-        return ESPRESSO_PRICE;
+        return kEspressoPrice;
     }
 };
 class DarkRoast : public Beverage {//深度烘焙咖啡
@@ -38,7 +38,7 @@ public:
         description = "DardRoast";
     }
     int cost(){
-        return DRAKROAST_PRICE;
+        return kDarkRoastPrice;
     }
 };
 
@@ -48,11 +48,11 @@ public:
     Mocha(Beverage* beverage){
         this->beverage=beverage;
     }
-    string getDescription(){
-        return beverage->getDescription()+",Mocha";
+    string get_description(){
+        return beverage->get_description()+",Mocha";
     }
     int cost(){
-        return MOCHA_PRICE+beverage->cost();
+        return kMochaPrice+beverage->cost();
     }
 };
 
@@ -62,19 +62,19 @@ public:
     Whip(Beverage* beverage){
         this->beverage=beverage;
     }
-    string getDescription() {
-        return beverage->getDescription()+",Whip";
+    string get_description() {
+        return beverage->get_description()+",Whip";
     }
     int cost() {
-        return WHIP_PRICE+beverage->cost();
+        return kWhipPrice+beverage->cost();
     }
 };
 
 //主函数
 int main() {
     Beverage* beverage = new DarkRoast();
-    beverage=new Mocha(beverage);
-    beverage=new Whip(beverage);
-    cout<<beverage->getDescription()<<"￥"<<beverage->cost()<<endl;
+    beverage = new Mocha(beverage);
+    beverage = new Whip(beverage);
+    cout<<beverage->get_description()<<"￥"<<beverage->cost()<<endl;
     return 0;
 }
