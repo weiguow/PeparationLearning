@@ -1,0 +1,47 @@
+1.什么是git和github,以及二者的区别
+  git是一个版本管理工具，是可以在你电脑不联网的情况下，只在本地使用的一个版本管理工具，其作用就是可以让你更好的管理你的程序，比如你原来提交过的内容，以后虽然修改了，但是通过git这个工具，可以把你原来提交的内容重现出来，这样对于你后来才意识到的一些错误的更改，可以进行还原
+  github，这是一个网站，就是每个程序员自己写的程序，可以在github上建立一个网上的仓库，你每次提交的时候可以把代码提交到网上，这样你的每次提交，别人也都可以看到你的代码，同时别人也可以帮你修改你的代码，这种开源的方式非常方便程序员之间的交流和学习。 
+
+  git可以认为是一个软件，能够帮你更好的写程序，github则是一个网站，这个网站可以帮助程序员之间互相交流和学习。
+
+2.安装与使用
+  github注册与创建一个仓库
+  地址:https://github.com/
+  1.按照步骤注册完毕之后记住自己的username和email,start a project,
+  填好仓库名,描述,选为public,勾选initialize this repository with a readme
+  git安装:
+  1.打开终端,输入sudo apt-get install git
+    验证是否能连接上github
+    ssh -T git@github.com 出现是否确定想要继续连接,输入yes,会出现警告提示如下
+    warning:Permanently added "github.com....."
+    Permission denied(publickey)
+
+  2.安装SSH Keys
+  sudo apt-get install git
+  对github进行push/pull操作都需要SSH进行安全验证
+进行该步操作需要进入~/.ssh文件夹下
+cd ~/.ssh
+ls    
+能够看到此时文件夹下应该只有一个know_hosts
+接下来创建rsa公钥:
+    ssh-keygen -t rsa -C "github注册的邮箱"
+id_rsa（私钥）和id_rsa.pub（公钥）这两个文件被创建了
+查看id_rsa.pub的内容: 
+    gedit id_rsa.pub
+在GitHub中，依次点击Settings -> SSH Keys -> Add SSH Key，将id_rsa.pub文件中的字符串复制进去，注意字符串中没有换行和空格。
+配置git:
+    git config --global user.name "你的github用户名"
+    git config --global user.email  "你的github邮箱名"     
+    git init   本地仓库初始化 
+    git add ReadMe 将修改保存到缓冲区
+    git commit -m "add readme file"   推送本地修改到本地库中
+本地仓库连接github仓库 
+    git remote add origin https://github.com/你的github用户名/你的github仓库.git
+或者 git remote add origin git@github.com:weiguow/你的仓库名.git  取决于你选择的链接方式
+    git push origin master  如果失败了,报错是拒绝了你的更新,可以先git pull将github上该仓库中的内容更新到本地,然后再进行git push origin master
+可能要求输入帐号密码,按要求输入github的帐号密码即可
+从github将仓库clone下来
+    git clone https://github.com/你的github用户名/github仓库名.git
+
+参考教程:https://blog.csdn.net/qq_38716242/article/details/79380825
+
