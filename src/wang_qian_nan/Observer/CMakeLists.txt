@@ -1,3 +1,6 @@
+cmake_minimum_required(VERSION 3.12)
+project(Observer)
 
+set(CMAKE_CXX_STANDARD 11)
 
-add_executable (Observer Observer.cpp)
+add_executable(Observer Observer.cpp)

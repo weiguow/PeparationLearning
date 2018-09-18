@@ -1,9 +1,21 @@
+/*
+ * ×÷Õß:ÍõÙ»éª
+ * ±àĞ´ÈÕÆÚ:2018/9/11
+ * ÁªÏµ·½Ê½£ºsherlock_vip@163.com
+ * ¹¦ÄÜÃèÊö:ÔÚ²»ÆÆ»µ·â×°µÄÇ°ÌáÏÂ£¬²¶»ñÒ»¸ö¶ÔÏóµÄÄÚ²¿×´Ì¬£¬
+ *         ²¢ÔÚ¸Ã¶ÔÏóÖ®Íâ±£´æÕâ¸ö×´Ì¬£¬ÕâÑù¿ÉÒÔÔÚÒÔºó½«¶ÔÏó»Ö¸´µ½Ô­ÏÈ±£´æµÄ×´Ì¬¡£
+ */
 #include<iostream>
 #include<string>
 
 using namespace std;
 
 
+/*
+ * ÀàÃû:Memento
+ * ±àĞ´ÈÕÆÚ:18-9-11
+ * ¹¦ÄÜÃèÊö:±¸ÍüÂ¼½ÇÉ«£¬ÓÃÓÚ´æ´¢ Originator µÄÄÚ²¿×´Ì¬£¬²¢ÇÒ¿ÉÒÔ·ÀÖ¹ Originator ÒÔÍâµÄ¶ÔÏó·ÃÎÊ Memento¡£?
+ */
 class Originator;
 
 class Memento {
@@ -13,8 +25,8 @@ public:
 private:
     friend class Originator;
 
-    //Originatorå£°æ˜ä¸ºmementoçš„å‹å…ƒç±»
-    //é˜²æ­¢Originatorä»¥å¤–çš„å…¶ä»–å¯¹è±¡è®¿é—®memento,å°å¯†çš„æ•ˆæœ,å³å®šä¹‰ä¸­æ‰€è¯´çš„ä¸ç ´åå°é—­.
+    //OriginatorÉùÃ÷ÎªmementoµÄÓÑÔªÀà
+    //·ÀÖ¹OriginatorÒÔÍâµÄÆäËû¶ÔÏó·ÃÎÊmemento,·âÃÜµÄĞ§¹û,¼´¶¨ÒåÖĞËùËµµÄ²»ÆÆ»µ·â±Õ.
     string GetWords() {
         return word;
     }
@@ -22,25 +34,30 @@ private:
     string word;
 };
 
+/*
+ * ÀàÃû:Originator
+ * ±àĞ´ÈÕÆÚ:18-9-11
+ * ¹¦ÄÜÃèÊö:Ô­·¢Æ÷£¬¸ºÔğ´´½¨Ò»¸ö±¸ÍüÂ¼£¬¿ÉÒÔ¼ÇÂ¼¡¢»Ö¸´×ÔÉíµÄÄÚ²¿×´Ì¬
+ */
 
 class Originator {
 public:
     Originator(string myword) : word(myword) {}
 
-    //å­˜æ¡£
+    //´æµµ
 
     Memento *CreateMemento() {
         return new Memento(word);
     }
 
-    //æ¢å¤å­˜æ¡£
+    //»Ö¸´´æµµ
 
     void RestoreMemento(Memento *pword) {
         word = pword->GetWords();
-        cout << "çŠ¶æ€æ¢å¤" << endl;
+        cout << "×´Ì¬»Ö¸´" << endl;
     }
 
-    //è¾“å‡ºæ–‡å­—
+    //Êä³öÎÄ×Ö
 
     void ShowWords() {
         cout << word << endl << endl;
@@ -51,6 +68,11 @@ private:
 };
 
 
+/*
+ * ÀàÃû:Caretake
+ * ±àĞ´ÈÕÆÚ:18-9-11
+ * ¹¦ÄÜÃèÊö:¸ºÔğ´æ´¢±¸ÍüÂ¼£¬²»ÄÜ¶Ô±¸ÍüÂ¼µÄÄÚÈİ½øĞĞ²Ù×÷ºÍ·ÃÎÊ£¬Ö»ÄÜ¹»½«±¸ÍüÂ¼´«µİ¸øÆäËû¶ÔÏó
+ */
 class Caretake {
 public:
     void SetMemento(Memento *m_pmemento) {
@@ -68,34 +90,34 @@ private:
 
 
 int main(void) {
-    Originator *wi_1 = new Originator("æ˜¾ç¤ºåˆå§‹çŠ¶æ€");
-    wi_1->ShowWords();  //æ˜¾ç¤ºåˆå§‹çŠ¶æ€
+    Originator *wi_1 = new Originator("ÏÔÊ¾³õÊ¼×´Ì¬");
+    wi_1->ShowWords();  //ÏÔÊ¾³õÊ¼×´Ì¬
 
-    //å­˜æ¡£
+    //´æµµ
 
     Caretake *ct = new Caretake;
     ct->SetMemento(wi_1->CreateMemento());
 
-    //å»ºç«‹æ–°çš„çŠ¶æ€
+    //½¨Á¢ĞÂµÄ×´Ì¬
 
-    Originator *wi_2 = new Originator("æ˜¾ç¤ºæ–°çš„çŠ¶æ€");
-    wi_2->ShowWords();//æ˜¾ç¤ºæ–°çš„çŠ¶æ€
+    Originator *wi_2 = new Originator("ÏÔÊ¾ĞÂµÄ×´Ì¬");
+    wi_2->ShowWords();//ÏÔÊ¾ĞÂµÄ×´Ì¬
 
 
     int choise;
-    cout << "è¯·è¾“å…¥ä½ çš„é€‰æ‹©ï¼š1.ä¸æ›´æ–°çŠ¶æ€      2.æ›´æ–°çŠ¶æ€" << endl;
-    cout << "ä½ çš„é€‰æ‹©æ˜¯ï¼š";
+    cout << "ÇëÊäÈëÄãµÄÑ¡Ôñ£º1.²»¸üĞÂ×´Ì¬      2.¸üĞÂ×´Ì¬" << endl;
+    cout << "ÄãµÄÑ¡ÔñÊÇ£º";
     cin >> choise;
     switch (choise) {
         case 1:
-            cout << "å·²æ”¾å¼ƒæ›´æ–°" << endl;
+            cout << "ÒÑ·ÅÆú¸üĞÂ" << endl;
             break;
         case 2:
-            wi_1->RestoreMemento(ct->GetMemento());//è¯»å–å­˜æ¡£ï¼ŒåšæŒæœ€åˆçš„æƒ³æ³•
+            wi_1->RestoreMemento(ct->GetMemento());//¶ÁÈ¡´æµµ£¬¼á³Ö×î³õµÄÏë·¨
             wi_1->ShowWords();
             break;
         default:
-            cout << "ä½ è¾“å…¥çš„é€‰é¡¹æœ‰è¯¯ï¼" << endl;
+            cout << "ÄãÊäÈëµÄÑ¡ÏîÓĞÎó£¡" << endl;
     }
 
     system("pause");
