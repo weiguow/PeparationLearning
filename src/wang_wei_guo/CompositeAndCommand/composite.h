@@ -23,24 +23,24 @@ protected:
     list<Command*> mList;
 };
 
-class FirstCommand:public Command{
+class ConcreteCommandA:public Command{
 public:
-    FirstCommand(char* name):Command(name){}
+    ConcreteCommandA(char* name):Command(name){}
     virtual void attach(Command* cpn);
     virtual void detach(Command* cpn);
     virtual void display(string str);
 };
 
-class SecondCommand:public Command{
+class ConcreteCommandB:public Command{
 public:
-    SecondCommand(char* name):Command(name){}
+    ConcreteCommandB(char* name):Command(name){}
     virtual void attach(Command* cpn);
     virtual void display(string str);
 };
 
-class ThirdCommand:public Command{
+class ConcreteCommandC:public Command{
 public:
-    ThirdCommand(char* name):Command(name){}
+    ConcreteCommandC(char* name):Command(name){}
     virtual void detach(Command* cpn);
     virtual void display(string str);
 

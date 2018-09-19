@@ -18,20 +18,35 @@ using namespace std;
  * 返回值说明:
  * 其他说明:
  */
-
-void FirstCommand::attach(Command *cpn) {
+void ConcreteCommandA::attach(Command *cpn) {
     if (nullptr != cpn) {  /*如果指针不为空，将节点放到后面*/
         mList.push_back(cpn);
     }
 }
 
-void FirstCommand::detach(Command *cpn) {
+/*
+ * 函数名:detach
+ * 功能描述:将树结构的下一层删除
+ * 调用函数清单:
+ * 输入参数说明:
+ * 返回值说明:
+ * 其他说明:
+ */
+void ConcreteCommandA::detach(Command *cpn) {
     if (nullptr != cpn) {      /*如果指针不为空，移走该节点*/
         mList.remove(cpn);
     }
 }
 
-void FirstCommand::display(string str) {
+/*
+ * 函数名:display
+ * 功能描述:将树结构的下一层依附在上一层
+ * 调用函数清单:
+ * 输入参数说明:str
+ * 返回值说明:
+ * 其他说明:
+ */
+void ConcreteCommandA::display(string str) {
     list<Command *>::iterator beg = mList.begin();  /*顺序遍历*/
     cout << str << mName << endl;
     str = str + str;
@@ -40,21 +55,21 @@ void FirstCommand::display(string str) {
     }
 }
 
-void SecondCommand::display(string str) {
+void ConcreteCommandB::display(string str) {
     cout << str << mName << endl;
 }
 
-void SecondCommand::attach(Command *cpn) {
+void ConcreteCommandB::attach(Command *cpn) {
     if (nullptr != cpn) {  /*如果指针不为空，将节点放到后面*/
         mList.push_back(cpn);
     }
 }
 
-void ThirdCommand::display(string str) {
+void ConcreteCommandC::display(string str) {
     cout << str << mName << endl;
 }
 
-void ThirdCommand::detach(Command *cpn) {
+void ConcreteCommandC::detach(Command *cpn) {
     if (nullptr != cpn) {      /*如果指针不为空，移走该节点*/
         mList.remove(cpn);
     }

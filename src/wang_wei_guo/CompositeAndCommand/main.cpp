@@ -6,9 +6,9 @@ using namespace std;
 int main() {
     string str("─");
 
-    FirstCommand com1("中国科学院");
-    SecondCommand com2("中国科学院天津计算技术研究所");
-    ThirdCommand com3("中国科学院北京计算所");
+    ConcreteCommandA com1("中国科学院");
+    ConcreteCommandB com2("中国科学院天津计算技术研究所");
+    ConcreteCommandC com3("中国科学院北京计算所");
 
     cout << "一级目录" << endl;
     com1.display(str);
@@ -20,9 +20,9 @@ int main() {
     com1.display(str);
     cout << endl;
 
-    FirstCommand com11("中国科学院深圳先进研究院");
-    SecondCommand com22("数字所异构智能中心");
-    ThirdCommand com33("数字所云计算中心");
+    ConcreteCommandA com11("中国科学院深圳先进研究院");
+    ConcreteCommandB com22("数字所异构智能中心");
+    ConcreteCommandC com33("数字所云计算中心");
 
     cout << "添加三级目录" << endl;
     com11.attach(&com22);
