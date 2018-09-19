@@ -1,3 +1,6 @@
 add_subdirectory(Facade)
 add_subdirectory(GTest)
 add_subdirectory(Composite)
+add_subdirectory(CompositeAndCommand)
+add_subdirectory(glogTest)
+add_subdirectory(StdMove)
