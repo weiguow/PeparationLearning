@@ -1,0 +1,53 @@
+project (Hello)  //项目名
+add_executable(Hello Hello.c)   //添加要执行的文件，并输出为Hello
+add_executable(Hello Hello.c File2.c File3.c File4.c)  //编译运行Hello.c-File4.c，输出为Hello)
+
+cmake_minium_required(2.6)
+project(HELLO)
+
+set(HELLO_SRCS Hello.c File2.c File3.c)
+
+if(WIN32)
+  set(HELLO_SRCS ${HELLO_SRCS} WinSupport.c)
+else()
+  set(HELLO_SRCS ${HELLO_SRCS} UnixSupport.c)
+endif()
+
+add_executable(Hello ${Hello_SRCS})
+
+#look for the TCL library
+find_library (TCL_LIBRARY
+  NAMES tcl tcl84 tcl83 tcl82 tcl80
+  PATHS /usr/lib /usr/local/lib
+  )
+
+if(TCL_LIBRARY)
+  target_link_library(Hello ${TCL_LIBRARY})  //为target添加需要链接的分享库
+endif()
+
+cd Hello
+ccmake .  或者cmake ..
+make
+
+add_library(foo foo.cxx)
+target_link_libraries(foo bar)
+
+add_executable(foobar foobar.cxx)
+target_link_libraries(foobar foo)  //将foo和bar链接到foobar中
+
+add_subdirectory(./googletest) 
+
+include_directories(./googletest/include)
+
+link_directories(./googletest)
+
+add_excutable(Test main.cpp)	
+
+set(LIBRARIES test pthread)
+
+target_link_libraries(Test ${LIBRARIES})
+
+
+
+
+
