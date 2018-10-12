@@ -1,0 +1,5 @@
+Log file created at: 2018/10/12 00:12:29
+Running on machine: weiguow
+Log line format: [IWEF]mmdd hh:mm:ss.uuuuuu threadid file:line] msg
+I1012 00:12:29.391496 16640 main.cpp:7] HELLOok!
+W1012 00:12:29.391624 16640 main.cpp:8] warning test
