@@ -7,6 +7,7 @@
 
 #include <chinese.h>
 #include <teacher.h>
+#include <student.h>
 
 using std::cout;
 using std::cin;
@@ -54,8 +55,32 @@ int main(){
     Teacher teacher_li_copy(teacher_li);
     // 测试 赋值运算符
     Teacher teacher_li_assign = teacher_li;
+    // 测试输出运算符重载
+    cout<<teacher_li_assign<<endl;
 
     cout<<"-------------------"<<endl;
+
+
+    cout<<"#######################"<<endl;
+
+    vector<string> xiao_comp_subjects;
+    xiao_comp_subjects.push_back("English");
+    xiao_comp_subjects.push_back("Computer");
+    vector<string> xiao_ele_subjects;
+    xiao_ele_subjects.push_back("basketball");
+    xiao_ele_subjects.push_back("swimming");
+    Student xiao_student(xiao_ming.get_name(),xiao_ming.get_id(),xiao_ming.getM_age(),xiao_comp_subjects,xiao_ele_subjects);
+    char* xiao_career = "I am a student";
+    xiao_student.set_career(xiao_career);
+    cout<<xiao_student<<endl;
+    cout<<xiao_student.get_career()<<endl;
+
+    Student wang_student = xiao_student;
+    char* wang_name = "wangweiguo";
+    wang_student.set_name(wang_name);
+    cout<<wang_student<<endl;
+    cout<<"#######################"<<endl;
+
 
     return 0;
 }

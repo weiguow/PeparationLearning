@@ -5,9 +5,10 @@
 #ifndef PEPARATIONLEARNING_TEACHER_H
 #define PEPARATIONLEARNING_TEACHER_H
 
-#include <chinese.h>
 #include <vector>
 #include <string>
+
+#include <chinese.h>
 
 using std::string;
 using std::vector;
