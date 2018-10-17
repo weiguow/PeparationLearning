@@ -23,8 +23,6 @@ Student::~Student() {
     m_elective_subjects.clear();
 }
 
-
-
 void Student::set_career(const char *career) {
     int temp_len = strlen(career);
     mp_career = nullptr;

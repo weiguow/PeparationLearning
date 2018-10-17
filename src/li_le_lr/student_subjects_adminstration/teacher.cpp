@@ -30,12 +30,12 @@ void Teacher::set_career(const char *career) {
 }
 
 string Teacher::get_career(){
-//    cout<<mp_career<<endl;
+    cout<<mp_career<<endl;
     string str(mp_career);
     return str;
 }
 
 Teacher::~Teacher() {
-    delete mp_career;
+//    delete mp_career;
     cout<<"Teacher destruct"<<endl;
 }

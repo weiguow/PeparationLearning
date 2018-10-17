@@ -8,6 +8,7 @@
 #include <chinese.h>
 #include <teacher.h>
 #include <student.h>
+#include <university_class.h>
 
 using std::cout;
 using std::cin;
@@ -82,5 +83,28 @@ int main(){
     cout<<"#######################"<<endl;
 
 
+    cout<<"班级测试"<<endl;
+//    UniversityClass freshman_class;
+//    freshman_class.m_teacher = shared_ptr<Teacher>(&teacher_li);
+//    freshman_class.m_class_id = 12;
+//    freshman_class.m_description = "大一新班";
+//    unordered_set<unique_ptr<Student>> current_students;
+//    unique_ptr<Student> wang_student_p = unique_ptr<Student>(&wang_student);
+//    cout<<*wang_student_p<<endl;
+
+//    current_students.insert(wang_student_p);
+//    auto xiao_student_p = unique_ptr<Student>(xiao_student);
+//    current_students.insert(xiao_student_p);
+//    for(auto it=current_students.begin();it!=current_students.end();it++){
+//        cout<<*it<<endl;
+//    }
+
+    auto comp_subjects = xiao_comp_subjects;
+    auto ele_subjects = xiao_ele_subjects;
+    Student* other_student = new Student("makun",2,23,comp_subjects,ele_subjects);
+    shared_ptr<Student> other_s_student = shared_ptr<Student>(other_student);
+    cout<<*other_s_student<<endl;
+    other_s_student->set_career("I am a university student");
+    cout<<other_student->get_career()<<endl;
     return 0;
 }
