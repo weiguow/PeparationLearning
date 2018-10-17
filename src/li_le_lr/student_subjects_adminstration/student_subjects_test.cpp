@@ -48,7 +48,7 @@ int main(){
 
     //测试 虚函数
     teacher_li.set_career(t_career);
-    cout<<teacher_li.get_career()<<endl;
+    cout<<"teacher_li's career:"<<teacher_li.get_career()<<endl;
 
     //测试拷贝构造
     Teacher teacher_li_copy(teacher_li);
