@@ -6,24 +6,18 @@
 #define PEPARATIONLEARNING_CHINESE_H
 
 #include <iostream>
-#include <memory>
 
 using std::ostream;
 using std::cout;
 using std::cin;
 using std::endl;
-using std::shared_ptr;
-using std::weak_ptr;
-using std::make_shared;
 
 class Chinese {
 
 public:
     Chinese() = delete;
 
-    explicit Chinese(shared_ptr<char*> name, unsigned int id, int age);
-
-    explicit Chinese(char* name, unsigned int id, int age );
+    explicit Chinese(char *name, unsigned int id, int age);
 
     // 拷贝构造函数
     Chinese(const Chinese &c);
@@ -32,11 +26,11 @@ public:
     Chinese &operator=(const Chinese &c);
 
     // 移动构造函数
-//    Chinese(Chinese &&c)noexcept;
+    Chinese(Chinese &&c)noexcept;
 
-    shared_ptr<char*> get_name();
+    char *get_name();
 
-    void set_name( shared_ptr<char*> name);
+    void set_name(const char *name);
 
     unsigned int get_id();
 
@@ -54,7 +48,7 @@ public:
         cout << " Chinese  operator<< begins" << endl;
 
         output << c.m_id << endl;
-        output << *c.msp_name << endl;
+        output << c.mp_name << endl;
         output << c.m_age << endl;
         cout << " Chinese  operator<< ends" << endl;
 
@@ -69,10 +63,8 @@ public:
     virtual ~Chinese();
 
 protected:
-//    char *mp_career;
-//    char *mp_name;
-    shared_ptr<char*> msp_career;
-    shared_ptr<char*> msp_name;
+    char *mp_career;
+    char *mp_name;
     unsigned int m_id;
 
 private:

@@ -9,12 +9,18 @@
 #include <chinese.h>
 
 
-Chinese::Chinese(char *name, unsigned int id, int age) : m_id(id), m_age(age) {
-    cout << "construct Chinese" << endl;
+Chinese::Chinese(shared_ptr<char*> name, unsigned int id, int age) : m_id(id), m_age(age) {
+    cout << "construct Chinese with shared_ptr" << endl;
+    msp_career = nullptr;
+    msp_name = name; // 共享指针+1
+}
+
+Chinese::Chinese(char* name, unsigned int id, int age) : m_id(id), m_age(age) {
+    cout << "construct Chinese with shared_ptr" << endl;
     int temp_len = strlen(name);
-    mp_career = nullptr;
-    mp_name = new char[temp_len];
-    strcpy(mp_name, name);
+    msp_career = nullptr;
+    msp_name = make_shared<char*>(new char[temp_len]);
+    strcpy(*msp_name, name);
 
 }
 
@@ -23,30 +29,30 @@ Chinese::Chinese(const Chinese &c) {
     m_age = c.m_age;
     m_id = c.m_id;
 
-//    if (mp_name){
-//        delete mp_name; // 释放已占有的内存
+//    if (msp_name){
+//        delete msp_name; // 释放已占有的内存
 //    }
-
-
-    if (c.mp_name == nullptr) {
-        mp_name = nullptr;
+    msp_name.reset(); // 释放msp——name 所指向的对象，引用计数减1
+    if (c.msp_name == nullptr) {
+        msp_name = nullptr;
     } else {
-        int temp_len = strlen(c.mp_name);
-        mp_name = new char[temp_len]; // 重新分配内存
-        strcpy(mp_name, c.mp_name);
+        int temp_len = strlen(*c.msp_name);
+        msp_name = make_shared<char*>(new char[temp_len]); // 重新分配内存
+        strcpy(*msp_name, *c.msp_name);
     }
 
-//    if(mp_career){
-//        cout<<mp_career<<endl;
-//        delete mp_career;// 释放已占有的内存
+//    if(msp_career){
+//        cout<<msp_career<<endl;
+//        delete msp_career;// 释放已占有的内存
 //    }
-    if(c.mp_career== nullptr){
-        mp_career= nullptr;
+    msp_career.reset();
+    if(c.msp_career== nullptr){
+        msp_career= nullptr;
     }else{
-        int temp_len = strlen(c.mp_career);
-        mp_career = new char[temp_len]; // 重新分配内存
-        memset(mp_career,0,temp_len);
-        strcpy(mp_career,c.mp_career);
+        int temp_len = strlen(*c.msp_career);
+        msp_career = make_shared<char*>(new char[temp_len]); // 重新分配内存
+        memset(msp_career.get(),0,temp_len);
+        strcpy(*msp_career,*c.msp_career);
     }
 
     cout << "Chinese copy construct" << endl;
@@ -55,24 +61,33 @@ Chinese::Chinese(const Chinese &c) {
 
 // 赋值运算符
 Chinese& Chinese::operator=(const Chinese &c) {
-    m_age = c.getM_age();
+    m_age = c.m_age;
     m_id = c.m_id;
 
-    if (c.mp_name == nullptr) {
-        mp_name = nullptr;
+//    if (msp_name){
+//        delete msp_name; // 释放已占有的内存
+//    }
+    msp_name.reset(); // 释放msp——name 所指向的对象，引用计数减1
+    if (c.msp_name == nullptr) {
+        msp_name = nullptr;
     } else {
-        int temp_len = strlen(c.mp_name);
-        mp_name = new char[temp_len];
-        strcpy(mp_name, c.mp_name);
+        int temp_len = strlen(*c.msp_name);
+        msp_name = make_shared<char*>(new char[temp_len]); // 重新分配内存
+        strcpy(*msp_name, *c.msp_name);
     }
 
-
-    if (c.mp_career == nullptr) {
-        mp_career = nullptr;
-    } else {
-        int temp_len = strlen(c.mp_career);
-        mp_career = new char[temp_len];
-        strcpy(mp_career, c.mp_career);
+//    if(msp_career){
+//        cout<<msp_career<<endl;
+//        delete msp_career;// 释放已占有的内存
+//    }
+    msp_career.reset();
+    if(c.msp_career== nullptr){
+        msp_career= nullptr;
+    }else{
+        int temp_len = strlen(*c.msp_career);
+        msp_career = make_shared<char*>(new char[temp_len]); // 重新分配内存
+        memset(msp_career.get(),0,temp_len);
+        strcpy(*msp_career,*c.msp_career);
     }
 
     cout << "Chinese assign " << endl;
@@ -80,23 +95,28 @@ Chinese& Chinese::operator=(const Chinese &c) {
 }
 
 //     // 移动构造函数
-Chinese::Chinese(Chinese &&c)noexcept:m_age(c.m_age),m_id(c.m_id),mp_name(c.mp_name),mp_career(c.mp_career) {
-    c.mp_name = nullptr;    // 挪为己用后，把c的指针指向空
-    c.mp_career = nullptr;
 
+//Chinese::Chinese(Chinese &&c) {
+//
+//}
+//Chinese::Chinese(Chinese &&c)noexcept:m_age(c.m_age),m_id(c.m_id),msp_name(c.msp_name),msp_career(c.msp_career) {
+//    c.msp_name = nullptr;    // 挪为己用后，把c的指针指向空
+//    c.msp_career = nullptr;
+//
+//}
+
+shared_ptr<char*> Chinese::get_name() {
+    return msp_name;
 }
 
-char *Chinese::get_name() {
-    return mp_name;
-}
-
-void Chinese::set_name(const char *name) {
-    int temp_len = strlen(name);
-    if (strlen(mp_name) > 0) {
-        delete mp_name; // 先释放内存
-    }
-    mp_name = new char[temp_len];
-    strcpy(mp_name, name);
+void Chinese::set_name(shared_ptr<char*> name) {
+//    int temp_len = strlen(name);
+//    if (strlen(msp_name) > 0) {
+//        delete msp_name; // 先释放内存
+//    }
+//    msp_name = new char[temp_len];
+//    strcpy(msp_name, name);
+    msp_name = name;
 }
 
 
@@ -118,14 +138,14 @@ void Chinese::setM_age(int m_age) {
 
 // 虚函数默认实现
 void Chinese::set_career(const char *career) {
-    mp_career = nullptr;
+//    msp_career = nullptr;
 }
 
 // 析构函数，记得释放内存
 Chinese::~Chinese() {
     cout << "destruct Chinese" << endl;
-    delete mp_name;
-    delete mp_career;
+//    delete msp_name;
+//    delete msp_career;
 }
 
 int Chinese::getM_er() const {

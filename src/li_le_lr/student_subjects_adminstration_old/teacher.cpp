@@ -24,18 +24,18 @@ Teacher::Teacher(Teacher&& t):Chinese(t),m_subjects(t.m_subjects){
 void Teacher::set_career(const char *career) {
 //    Chinese::set_career(career);
     int temp_len = strlen(career);
-    msp_career = nullptr;
-    msp_career = make_shared<char*>(new char[temp_len]);
-    strcpy(*msp_career, career);
+    mp_career = nullptr;
+    mp_career = new char[temp_len];
+    strcpy(mp_career, career);
 }
 
 string Teacher::get_career(){
-    cout<<*msp_career<<endl;
-    string str(*msp_career);
+    cout<<mp_career<<endl;
+    string str(mp_career);
     return str;
 }
 
 Teacher::~Teacher() {
-//    delete msp_career;
+//    delete mp_career;
     cout<<"Teacher destruct"<<endl;
 }

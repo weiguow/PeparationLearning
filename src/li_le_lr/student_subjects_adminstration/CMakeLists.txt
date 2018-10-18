@@ -1,7 +1,7 @@
 
 message(${CMAKE_SOURCE_DIR})
 message(${CMAKE_CURRENT_SOURCE_DIR})
-# 头文件搜索路径相当于 gcc -Isrc/li_le_lr/student_subjects_adminstration
+# 头文件搜索路径相当于 gcc -Isrc/li_le_lr/student_subjects_adminstration_old
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
 set(Chineses_SRC chinese.h chinese.cpp)

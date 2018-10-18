@@ -25,12 +25,12 @@ Student::~Student() {
 
 void Student::set_career(const char *career) {
     int temp_len = strlen(career);
-    msp_career = nullptr;
-    msp_career = make_shared<char*>(new char[temp_len]);
-    strcpy(*msp_career, career);
+    mp_career = nullptr;
+    mp_career = new char[temp_len];
+    strcpy(mp_career, career);
 }
 
 string Student::get_career() {
-    string str(*msp_career);
+    string str(mp_career);
     return str;
 }
