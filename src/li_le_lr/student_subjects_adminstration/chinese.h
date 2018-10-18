@@ -55,6 +55,10 @@ public:
         return output;
     }
 
+    int getM_er() const;
+
+    void setM_er(int m_er);
+
     // 虚析构函数
     virtual ~Chinese();
 
@@ -65,6 +69,7 @@ protected:
 
 private:
     int m_age;
+    int m_er;
 };
 
 #endif //PEPARATIONLEARNING_CHINESE_H

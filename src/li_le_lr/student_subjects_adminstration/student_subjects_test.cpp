@@ -16,10 +16,14 @@ using std::endl;
 
 int main(){
 
+
+
     char my_name[]="xiao_ming";
     unsigned int my_id=1;
     int age = 24;
     Chinese xiao_ming(my_name, my_id,age);
+    Chinese* xiao_p = new Chinese(my_name,my_id,age);
+//    cout<<xiao_ming.
     char* xiao_ming_name = xiao_ming.get_name();
     cout<<xiao_ming_name<<endl;
 
@@ -35,8 +39,8 @@ int main(){
     cout<<"拷贝构造函数测试"<<endl;
     Chinese xiao_ming_copy(xiao_ming);
     cout<<xiao_ming_copy<<endl;
-//    Chinese xiao_ming_assign = xiao_ming_copy;
-//    cout<<xiao_ming_assign<<endl;
+    Chinese xiao_ming_assign = xiao_ming_copy;
+    cout<<xiao_ming_assign<<endl;
 
     cout<<"-----------------"<<endl;
     char t_name[]="teacher_li";
@@ -50,6 +54,9 @@ int main(){
 
     //测试 虚函数
     teacher_li.set_career(t_career);
+    Chinese* duo_t = &teacher_li;
+    duo_t->set_career("I am a duo_t");
+//    cout<<duo_t->ge
     cout<<"teacher_li's career:"<<teacher_li.get_career()<<endl;
 
     //测试拷贝构造
@@ -106,5 +113,8 @@ int main(){
     cout<<*other_s_student<<endl;
     other_s_student->set_career("I am a university student");
     cout<<other_student->get_career()<<endl;
+
+    delete xiao_p;
+//    delete duo_t;
     return 0;
 }

@@ -3,15 +3,11 @@
 //
 // 系统库头文件
 #include <cstdio>
-#include <iostream>
 #include <cstring>
 
 // 项目头文件
 #include <chinese.h>
 
-using std::cout;
-using std::cin;
-using std::endl;
 
 Chinese::Chinese(char *name, unsigned int id, int age) : m_id(id), m_age(age) {
     cout << "construct Chinese" << endl;
@@ -26,7 +22,6 @@ Chinese::Chinese(const Chinese &c) {
 
     m_age = c.m_age;
     m_id = c.m_id;
-
 
 //    if (mp_name){
 //        delete mp_name; // 释放已占有的内存
@@ -131,5 +126,13 @@ Chinese::~Chinese() {
     cout << "destruct Chinese" << endl;
     delete mp_name;
     delete mp_career;
+}
+
+int Chinese::getM_er() const {
+    return m_er;
+}
+
+void Chinese::setM_er(int m_er) {
+    Chinese::m_er = m_er;
 }
 
