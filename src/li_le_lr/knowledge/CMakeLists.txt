@@ -1,0 +1,1 @@
+add_executable(lele_ptr ptr.cpp)

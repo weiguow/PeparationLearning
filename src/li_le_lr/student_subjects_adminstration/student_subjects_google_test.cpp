@@ -5,8 +5,8 @@
 #include <iostream>
 #include <cstring>
 
-#include <gmock/gmock.h>
-//#include <gtest/gtest.h>
+//#include <gmock/gmock.h>
+#include <gtest/gtest.h>
 //#include <stout/gtest.hpp>
 
 #include <chinese.h>
@@ -17,33 +17,27 @@
 using std::cout;
 using std::cin;
 using std::endl;
+using std::make_unique;
+
 
 TEST(ChineseTest, CineseClass){
     char my_name[]="xiao_ming";
     unsigned int my_id=1;
     int age = 24;
     Chinese xiao_ming(my_name, my_id,age);
-    char* xiao_ming_name = xiao_ming.get_name();
-//    EXPECT_EQ(my_name,xiao_ming_name);
-//    cout<<xiao_ming_name<<endl;
-//
-//    char* new_name="xiao_ming_dong";
-//    xiao_ming.set_name(new_name);
-//    cout<<xiao_ming.get_name()<<endl;
-//    cout<<xiao_ming.get_id()<<endl;
-//    xiao_ming.set_id(667);
-//    cout<<xiao_ming.get_id()<<endl;
-//    cout<<xiao_ming<<endl;
-//
-//    // 拷贝构造函数测试
-//    cout<<"拷贝构造函数测试"<<endl;
-//    Chinese xiao_ming_copy(xiao_ming);
-//    cout<<xiao_ming_copy<<endl;
+    // 堆上分配内存
+//    Chinese* xiao_p = new Chinese(my_name,my_id,age);
+//    delete xiao_p;
+    cout<<"使用智能指针"<<endl;
+    unique_ptr<Chinese> xiao_unique_p = make_unique<Chinese>(Chinese(my_name,my_id,age));
+    cout<<*xiao_unique_p<<endl;
+//    EXPECT_EQ(my_name,*xiao_unique_p->get_name());
+    EXPECT_STREQ(my_name,*xiao_unique_p->get_name());
 }
 
 int main(int argc, char** argv){
 
-    testing::InitGoogleMock(&argc, argv);
+    testing::InitGoogleTest(&argc,argv);
 
     return RUN_ALL_TESTS();
 
