@@ -37,8 +37,6 @@ public:
 
     void setMsp_name(const shared_ptr<string> &msp_name);
 
-    void set_name( shared_ptr<string> name);
-
     unsigned int get_id();
 
     void set_id(unsigned int id);

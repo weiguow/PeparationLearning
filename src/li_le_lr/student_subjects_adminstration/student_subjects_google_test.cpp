@@ -20,7 +20,7 @@ using std::endl;
 using std::make_unique;
 
 
-TEST(ChineseTest, CineseClass){
+TEST(ChineseTest, ChineseClass) {
     shared_ptr<string> my_name = make_shared<string>(string("xiao_ming"));
 //    string my_name("xiao_ming");
     unsigned int my_id=1;
@@ -36,56 +36,65 @@ TEST(ChineseTest, CineseClass){
     EXPECT_EQ(*my_name,*xiao_unique_p->getMsp_name());
 }
 
+TEST(TeacherTest, TeacherClass) {
+    shared_ptr<string> t_name = make_shared<string>(string("teacher_li"));
+    unsigned int t_id = 2;
+    int t_age = 24;
+    vector<string> t_subjects;
+    t_subjects.push_back("Math");
+    t_subjects.push_back("Chemistry");
+    Teacher teacher_li(t_name, t_id, t_age, t_subjects);
+    auto t_career = make_shared<string>(string("I am a teacher\n"));
+
+    //测试 虚函数
+    teacher_li.set_career(t_career);
+    EXPECT_EQ("teacher_li", *teacher_li.getMsp_name());
+    EXPECT_EQ("I am a teacher\n", teacher_li.get_career());
+
+    //测试拷贝构造
+    Teacher teacher_li_copy(teacher_li);
+    // 测试 赋值运算符
+    Teacher teacher_li_assign = teacher_li;
+    // 测试输出运算符重载
+    cout << teacher_li_assign << endl;
+
+    cout << "-------------------" << endl;
+
+}
+
+TEST(StudentTest, StudentClass) {
+
+    cout << "#######################" << endl;
+
+    vector<string> xiao_comp_subjects;
+    xiao_comp_subjects.push_back("English");
+    xiao_comp_subjects.push_back("Computer");
+    vector<string> xiao_ele_subjects;
+    xiao_ele_subjects.push_back("basketball");
+    xiao_ele_subjects.push_back("swimming");
+    auto xiao_ming_name = make_shared<string>(string("xiaoming"));
+    Student xiao_student(xiao_ming_name, 33, 25, xiao_comp_subjects, xiao_ele_subjects);
+    auto xiao_career = make_shared<string>(string("I am a student\n"));
+    xiao_student.set_career(xiao_career);
+    cout << xiao_student << endl;
+    EXPECT_EQ("I am a student\n", xiao_student.get_career());
+    cout << xiao_student.get_career() << endl;
+
+    Student wang_student = xiao_student;
+    auto wang_name = make_shared<string>(string("wangweiguo"));
+    wang_student.setMsp_name(wang_name);
+    EXPECT_EQ("wangweiguo", *wang_student.getMsp_name());
+    cout << wang_student << endl;
+    cout << "#######################" << endl;
+
+}
+
 int main(int argc, char** argv){
 
     testing::InitGoogleTest(&argc,argv);
 
     return RUN_ALL_TESTS();
 
-//    cout<<"-----------------"<<endl;
-//    char t_name[]="teacher_li";
-//    unsigned int t_id=2;
-//    int t_age = 24;
-//    vector<string> t_subjects;
-//    t_subjects.push_back("Math");
-//    t_subjects.push_back("Chemistry");
-//    Teacher teacher_li(t_name,t_id,t_age,t_subjects);
-//    char* t_career="I am a teacher\n";
-//
-//    //测试 虚函数
-//    teacher_li.set_career(t_career);
-//    cout<<"teacher_li's career:"<<teacher_li.get_career()<<endl;
-//
-//    //测试拷贝构造
-//    Teacher teacher_li_copy(teacher_li);
-//    // 测试 赋值运算符
-//    Teacher teacher_li_assign = teacher_li;
-//    // 测试输出运算符重载
-//    cout<<teacher_li_assign<<endl;
-//
-//    cout<<"-------------------"<<endl;
-//
-//
-//    cout<<"#######################"<<endl;
-//
-//    vector<string> xiao_comp_subjects;
-//    xiao_comp_subjects.push_back("English");
-//    xiao_comp_subjects.push_back("Computer");
-//    vector<string> xiao_ele_subjects;
-//    xiao_ele_subjects.push_back("basketball");
-//    xiao_ele_subjects.push_back("swimming");
-//    Student xiao_student(xiao_ming.get_name(),xiao_ming.get_id(),xiao_ming.getM_age(),xiao_comp_subjects,xiao_ele_subjects);
-//    char* xiao_career = "I am a student";
-//    xiao_student.set_career(xiao_career);
-//    cout<<xiao_student<<endl;
-//    cout<<xiao_student.get_career()<<endl;
-//
-//    Student wang_student = xiao_student;
-//    char* wang_name = "wangweiguo";
-//    wang_student.set_name(wang_name);
-//    cout<<wang_student<<endl;
-//    cout<<"#######################"<<endl;
-//
 //
 //    cout<<"班级测试"<<endl;
 ////    UniversityClass freshman_class;
