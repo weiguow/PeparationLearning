@@ -6,7 +6,7 @@
 #include <teacher.h>
 
 
-Teacher::Teacher(shared_ptr<string> name, unsigned int id, int age, vector<string> subjects):Chinese(name,id,age),m_subjects(subjects){
+Teacher::Teacher(char *name, unsigned int id, int age, vector<string> subjects):Chinese(name,id,age),m_subjects(subjects){
     cout<<"Teacher construct"<<endl;
 }
 
@@ -21,15 +21,18 @@ Teacher::Teacher(const Teacher &t):Chinese(t) {
 Teacher::Teacher(Teacher&& t):Chinese(t),m_subjects(t.m_subjects){
 }
 
-void Teacher::set_career(const shared_ptr<string> career) {
+void Teacher::set_career(const char *career) {
 //    Chinese::set_career(career);
-   msp_career  = career;
+    int temp_len = strlen(career);
+    msp_career = nullptr;
+    msp_career = make_shared<char*>(new char[temp_len]);
+    strcpy(*msp_career, career);
 }
 
 string Teacher::get_career(){
-//    cout<<*msp_career<<endl;
-//    string str(*msp_career);
-    return *msp_career;
+    cout<<*msp_career<<endl;
+    string str(*msp_career);
+    return str;
 }
 
 Teacher::~Teacher() {

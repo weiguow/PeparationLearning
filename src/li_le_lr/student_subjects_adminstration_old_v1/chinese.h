@@ -7,7 +7,7 @@
 
 #include <iostream>
 #include <memory>
-#include <string>
+
 using std::ostream;
 using std::cout;
 using std::cin;
@@ -15,14 +15,15 @@ using std::endl;
 using std::shared_ptr;
 using std::weak_ptr;
 using std::make_shared;
-using std::string;
 
 class Chinese {
 
 public:
     Chinese() = delete;
-    explicit Chinese(shared_ptr<string> name, unsigned int id, int age);
 
+    explicit Chinese(shared_ptr<char*> name, unsigned int id, int age);
+
+    explicit Chinese(char* name, unsigned int id, int age );
 
     // 拷贝构造函数
     Chinese(const Chinese &c);
@@ -31,13 +32,11 @@ public:
     Chinese &operator=(const Chinese &c);
 
     // 移动构造函数
-    Chinese(Chinese &&c)noexcept;
+//    Chinese(Chinese &&c)noexcept;
 
-    const shared_ptr<string> &getMsp_name() const;
+    shared_ptr<char*> get_name();
 
-    void setMsp_name(const shared_ptr<string> &msp_name);
-
-    void set_name( shared_ptr<string> name);
+    void set_name( shared_ptr<char*> name);
 
     unsigned int get_id();
 
@@ -48,7 +47,7 @@ public:
     void setM_age(int m_age);
 
     // 虚函数
-    virtual void set_career(const shared_ptr<string> career);
+    virtual void set_career(const char *career);
 
     // 输出运算重载
     friend ostream &operator<<(ostream &output, const Chinese &c) {
@@ -62,7 +61,9 @@ public:
         return output;
     }
 
+    int getM_er() const;
 
+    void setM_er(int m_er);
 
     // 虚析构函数
     virtual ~Chinese();
@@ -70,12 +71,13 @@ public:
 protected:
 //    char *mp_career;
 //    char *mp_name;
-    shared_ptr<string> msp_career;
-    shared_ptr<string> msp_name;
+    shared_ptr<char*> msp_career;
+    shared_ptr<char*> msp_name;
     unsigned int m_id;
 
 private:
     int m_age;
+    int m_er;
 };
 
 #endif //PEPARATIONLEARNING_CHINESE_H

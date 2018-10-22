@@ -21,8 +21,7 @@ using std::make_unique;
 
 
 TEST(ChineseTest, CineseClass){
-    shared_ptr<string> my_name = make_shared<string>(string("xiao_ming"));
-//    string my_name("xiao_ming");
+    char my_name[]="xiao_ming";
     unsigned int my_id=1;
     int age = 24;
     Chinese xiao_ming(my_name, my_id,age);
@@ -33,7 +32,7 @@ TEST(ChineseTest, CineseClass){
     unique_ptr<Chinese> xiao_unique_p = make_unique<Chinese>(Chinese(my_name,my_id,age));
     cout<<*xiao_unique_p<<endl;
 //    EXPECT_EQ(my_name,*xiao_unique_p->get_name());
-    EXPECT_EQ(*my_name,*xiao_unique_p->getMsp_name());
+    EXPECT_STREQ(my_name,*xiao_unique_p->get_name());
 }
 
 int main(int argc, char** argv){

@@ -16,15 +16,15 @@ using std::vector;
 class Student :public Chinese{
 
 public:
-    explicit Student(shared_ptr<string> name, unsigned int id, int age);
+    explicit Student(char* name, unsigned int id, int age);
 
-    explicit Student(shared_ptr<string> name, unsigned int id, int age, vector<string> compulsory_subjects, vector<string> elective_subjects);
+    explicit Student(char* name, unsigned int id, int age, vector<string> compulsory_subjects, vector<string> elective_subjects);
 
     Student(const Student& s);
 
     string get_career();
     // 虚函数重写
-    void set_career(const shared_ptr<string> career) override;
+    void set_career(const char *career) override;
 
     virtual ~Student();
 protected:

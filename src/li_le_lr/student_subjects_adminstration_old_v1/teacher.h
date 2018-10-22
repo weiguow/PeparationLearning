@@ -17,14 +17,14 @@ class Teacher :public Chinese{
 
 public:
     Teacher() = delete;
-    explicit Teacher(shared_ptr<string> name, unsigned int id, int age, vector<string> subjects);
+    explicit Teacher(char* name, unsigned int id, int age, vector<string> subjects);
 
     // 拷贝构造函数
     Teacher(const Teacher& t);
     // 移动构造函数
     Teacher(Teacher&& t);
     // 虚函数重写
-    void set_career(const shared_ptr<string> career) override;
+    void set_career(const char *career) override;
     string get_career();
     // 虚析构函数
     virtual ~Teacher();

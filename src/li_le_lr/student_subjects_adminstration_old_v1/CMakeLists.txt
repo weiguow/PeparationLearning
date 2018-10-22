@@ -9,8 +9,8 @@ set(Teacher_SRC teacher.h teacher.cpp)
 set(Student_SRC student.h student.cpp)
 set(University_class_SRC university_class.h university_class.cpp)
 set(Ch_SRC Ch.h Ch.cpp)
-#
-#add_executable(lele_student_subjects_test student_subjects_test.cpp ${Chineses_SRC} ${Teacher_SRC} ${Student_SRC} ${University_class_SRC})
+
+add_executable(lele_student_subjects_test student_subjects_test.cpp ${Chineses_SRC} ${Teacher_SRC} ${Student_SRC} ${University_class_SRC})
 
 
 add_executable(lele_student_google_test student_subjects_google_test.cpp ${Chineses_SRC} ${Teacher_SRC} ${Student_SRC} ${University_class_SRC})
