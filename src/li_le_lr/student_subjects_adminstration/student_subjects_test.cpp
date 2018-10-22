@@ -17,8 +17,6 @@ using std::make_unique;
 
 int main(){
 
-
-
     char my_name[]="xiao_ming";
     unsigned int my_id=1;
     int age = 24;
