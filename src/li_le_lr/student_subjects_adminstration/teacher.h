@@ -8,7 +8,10 @@
 #include <vector>
 #include <string>
 
+#include <stout/option.hpp>
+
 #include <chinese.h>
+#include <subject.h>
 
 using std::string;
 using std::vector;
@@ -16,9 +19,10 @@ using std::function;
 using namespace std::placeholders;
 
 namespace lele {
-
+    class Subject;
 //函数对象容器定义
     typedef function<void(string &, string &)> Fun;
+
 class Teacher : public Chinese{
 
 public:
@@ -40,6 +44,10 @@ public:
         f(*this->getMsp_name(), a);
     }
 
+    const Option<vector<shared_ptr<Subject>>> &getMsp_subjects() const;
+
+    void setMsp_subjects(const Option<vector<shared_ptr<Subject>>> &msp_subjects);
+
     string get_career();
 
     // 虚析构函数
@@ -47,6 +55,7 @@ public:
 
 private:
     vector<string> m_subjects;
+    Option<vector<shared_ptr<Subject>>> msp_subjects;
 };
 
 

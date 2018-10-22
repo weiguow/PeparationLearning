@@ -52,9 +52,9 @@ namespace lele {
 protected:
 
     private:
-        shared_ptr<Teacher> msp_head;
-        vector<string> m_compulsory_subjects;
-        vector<string> m_elective_subjects;
+        shared_ptr<Teacher> msp_head; //  班主任
+        vector<string> m_compulsory_subjects; // 必修课
+        vector<string> m_elective_subjects;  //   选修课
 
     };
 }

@@ -12,6 +12,9 @@
 #include <chinese.h>
 #include <teacher.h>
 #include <student.h>
+#include <subject.h>
+#include <compulsory_subject.h>
+#include <elective_subject.h>
 
 using std::cout;
 using std::cin;
@@ -111,6 +114,38 @@ TEST(CallbackTest, call_back_test) {
     xiao_student.setMsp_head(teacher_li);
 
     xiao_student.print_student_and_head_relationship();
+}
+
+TEST(SubjectTest, subject_test) {
+//    shared_ptr<Subject> english = make_shared<Subject>(Subject());
+
+    shared_ptr<string> t_name = make_shared<string>(string("teacher_li"));
+    unsigned int t_id = 2;
+    int t_age = 24;
+    vector<string> t_subjects;
+    t_subjects.push_back("Math");
+    t_subjects.push_back("English");
+    auto teacher_li = make_shared<Teacher>(Teacher(t_name, t_id, t_age, t_subjects));
+    vector<shared_ptr<Teacher>> teachers_v;
+    teachers_v.push_back(teacher_li);
+    shared_ptr<CompulsorySubject> english_c = make_shared<CompulsorySubject>(
+            CompulsorySubject("English", 3.0, 36, "Introduction to american literature", teachers_v));
+    EXPECT_EQ("English", english_c->getM_subject_name());
+    EXPECT_EQ(3.0, english_c->getM_point());
+    EXPECT_TRUE(english_c->getM_description().isSome());
+    EXPECT_EQ("Introduction to american literature", english_c->getM_description().get());
+
+    shared_ptr<CompulsorySubject> math_c = make_shared<CompulsorySubject>(
+            CompulsorySubject("math", 4.0, 40, "高数", teachers_v));
+
+    vector<shared_ptr<Subject>> li_subjects_v;
+    li_subjects_v.push_back(english_c);
+    li_subjects_v.push_back(math_c);
+    Option<vector<shared_ptr<Subject>>> li_subjects_v_o = Some(li_subjects_v);
+    teacher_li->setMsp_subjects(li_subjects_v_o);
+    EXPECT_EQ(2, li_subjects_v_o.get().size());
+
+
 }
 
 int main(int argc, char **argv) {

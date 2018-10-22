@@ -38,5 +38,13 @@ Teacher::Teacher(Teacher&& t): Chinese(t), m_subjects(t.m_subjects){
         cout << "Teacher destruct" << endl;
 }
 
+    const Option<vector<shared_ptr<Subject>>> &Teacher::getMsp_subjects() const {
+            return msp_subjects;
+    }
+
+    void Teacher::setMsp_subjects(const Option<vector<shared_ptr<Subject>>> &msp_subjects) {
+            Teacher::msp_subjects = msp_subjects;
+    }
+
 
 }
