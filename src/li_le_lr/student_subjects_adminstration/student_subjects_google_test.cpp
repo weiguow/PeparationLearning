@@ -12,28 +12,30 @@
 #include <chinese.h>
 #include <teacher.h>
 #include <student.h>
-#include <university_class.h>
 
 using std::cout;
 using std::cin;
 using std::endl;
 using std::make_unique;
+using std::unique_ptr;;
+
+using namespace lele;
 
 
 TEST(ChineseTest, ChineseClass) {
     shared_ptr<string> my_name = make_shared<string>(string("xiao_ming"));
 //    string my_name("xiao_ming");
-    unsigned int my_id=1;
+    unsigned int my_id = 1;
     int age = 24;
-    Chinese xiao_ming(my_name, my_id,age);
+    Chinese xiao_ming(my_name, my_id, age);
     // 堆上分配内存
 //    Chinese* xiao_p = new Chinese(my_name,my_id,age);
 //    delete xiao_p;
-    cout<<"使用智能指针"<<endl;
-    unique_ptr<Chinese> xiao_unique_p = make_unique<Chinese>(Chinese(my_name,my_id,age));
-    cout<<*xiao_unique_p<<endl;
+    cout << "使用智能指针" << endl;
+    unique_ptr<Chinese> xiao_unique_p = make_unique<Chinese>(Chinese(my_name, my_id, age));
+    cout << *xiao_unique_p << endl;
 //    EXPECT_EQ(my_name,*xiao_unique_p->get_name());
-    EXPECT_EQ(*my_name,*xiao_unique_p->getMsp_name());
+    EXPECT_EQ(*my_name, *xiao_unique_p->getMsp_name());
 }
 
 TEST(TeacherTest, TeacherClass) {
@@ -89,9 +91,31 @@ TEST(StudentTest, StudentClass) {
 
 }
 
-int main(int argc, char** argv){
+TEST(CallbackTest, call_back_test) {
+    shared_ptr<string> t_name = make_shared<string>(string("teacher_li"));
+    unsigned int t_id = 2;
+    int t_age = 24;
+    vector<string> t_subjects;
+    t_subjects.push_back("Math");
+    t_subjects.push_back("Chemistry");
+    auto teacher_li = make_shared<Teacher>(Teacher(t_name, t_id, t_age, t_subjects));
 
-    testing::InitGoogleTest(&argc,argv);
+    vector<string> xiao_comp_subjects;
+    xiao_comp_subjects.push_back("English");
+    xiao_comp_subjects.push_back("Computer");
+    vector<string> xiao_ele_subjects;
+    xiao_ele_subjects.push_back("basketball");
+    xiao_ele_subjects.push_back("swimming");
+    auto xiao_ming_name = make_shared<string>(string("xiaoming"));
+    Student xiao_student(xiao_ming_name, 33, 25, xiao_comp_subjects, xiao_ele_subjects);
+    xiao_student.setMsp_head(teacher_li);
+
+    xiao_student.print_student_and_head_relationship();
+}
+
+int main(int argc, char **argv) {
+
+    testing::InitGoogleTest(&argc, argv);
 
     return RUN_ALL_TESTS();
 
