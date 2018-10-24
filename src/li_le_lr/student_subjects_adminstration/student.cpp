@@ -5,32 +5,41 @@
 
 #include <student.h>
 
-Student::Student(char *name, unsigned int id, int age):Chinese(name,id,age) {
+namespace lele {
+    Student::Student(shared_ptr<string> name, unsigned int id, int age) : Chinese(name, id, age) {
 
-}
+    }
 
-Student::Student(char* name, unsigned int id, int age, vector<string> compulsory_subjects, vector<string> elective_subjects):Chinese(name,id,age),m_compulsory_subjects(compulsory_subjects),m_elective_subjects(elective_subjects) {
+    Student::Student(shared_ptr<string> name, unsigned int id, int age, vector<string> compulsory_subjects,
+                     vector<string> elective_subjects) : Chinese(name, id, age),
+                                                         m_compulsory_subjects(compulsory_subjects),
+                                                         m_elective_subjects(elective_subjects) {
 
-}
+    }
 
-Student::Student(const Student &s):Chinese(s) {
-    m_compulsory_subjects = s.m_compulsory_subjects;
-    m_elective_subjects = s.m_elective_subjects;
-}
+    Student::Student(const Student &s) : Chinese(s) {
+        m_compulsory_subjects = s.m_compulsory_subjects;
+        m_elective_subjects = s.m_elective_subjects;
+    }
 
-Student::~Student() {
-    m_compulsory_subjects.clear();
-    m_elective_subjects.clear();
-}
+    Student::~Student() {
+        m_compulsory_subjects.clear();
+        m_elective_subjects.clear();
+    }
 
-void Student::set_career(const char *career) {
-    int temp_len = strlen(career);
-    msp_career = nullptr;
-    msp_career = make_shared<char*>(new char[temp_len]);
-    strcpy(*msp_career, career);
-}
+    void Student::set_career(shared_ptr<string> career) {
+        msp_career = career;
+    }
 
-string Student::get_career() {
-    string str(*msp_career);
-    return str;
+    string Student::get_career() {
+        return *msp_career;
+    }
+
+    const shared_ptr<Teacher> &Student::getMsp_head() const {
+        return msp_head;
+    }
+
+    void Student::setMsp_head(const shared_ptr<Teacher> &msp_head) {
+        Student::msp_head = msp_head;
+    }
 }

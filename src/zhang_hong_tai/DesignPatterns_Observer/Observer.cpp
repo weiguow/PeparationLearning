@@ -9,7 +9,7 @@
 
 using namespace std;
 
-class Subject;
+class subject;
 
 /*
  * 类名：Observer
@@ -21,9 +21,9 @@ class Subject;
 class Observer {
 protected:
     string m_name;
-    Subject *m_subject;
+    subject *m_subject;
 public:
-    Observer(string m_name,Subject *m_subject){
+    Observer(string m_name, subject *m_subject) {
         this->m_name = m_name;
         this->m_subject = m_subject;
     }
@@ -39,7 +39,7 @@ public:
  */
 class StockObserver : public Observer{
 public:
-    StockObserver(string m_name,Subject *subject) : Observer(m_name,subject){}
+    StockObserver(string m_name, subject *subject) : Observer(m_name, subject) {}
     void update();
 };
 
@@ -52,18 +52,18 @@ public:
  */
 class NBAObserver : public Observer{
 public:
-    NBAObserver(string m_name,Subject *subject) : Observer(m_name,subject){}
+    NBAObserver(string m_name, subject *subject) : Observer(m_name, subject) {}
     void update();
 };
 
 /*
- * 类名：Subject
+ * 类名：subject
  * 作者：heldon 764165887@qq.com
  * 编写日期：18-9-13
  * 功能描述：抽象目标类
  * 版本：
  */
-class Subject{
+class subject {
 protected:
     list<Observer *> m_observers;
 public:
@@ -79,7 +79,7 @@ public:
  * 功能描述：具体目标类：秘书
  * 版本：
  */
-class Secretary : public Subject{
+class Secretary : public subject {
     /*
      * 函数名：attach
      * 作者：heldon 764165887@qq.com
@@ -130,7 +130,7 @@ void NBAObserver ::update() {
 }
 
 int main(){
-    Subject *secretary = new Secretary();
+    subject *secretary = new Secretary();
     Observer *wangweiguo = new NBAObserver("王卫国",secretary);
     Observer *makun = new NBAObserver("马坤",secretary);
     Observer *zhanghongtai = new StockObserver("张鸿泰",secretary);

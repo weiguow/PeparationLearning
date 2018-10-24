@@ -23,12 +23,12 @@ public:
 };
 
 /*
- * 类名:Subject
+ * 类名:subject
  * 编写日期:18-9-11
  * 功能描述:提供注册和删除观察者对象的接口
  */
 
-class Subject
+class subject
 {
 public:
     virtual void Attach(Observer *) = 0;
@@ -45,7 +45,7 @@ public:
 class ConcreteObserver : public Observer
 {
 public:
-    ConcreteObserver(Subject *pSubject) : m_pSubject(pSubject){}
+    ConcreteObserver(subject *pSubject) : m_pSubject(pSubject) {}
 
     void Update(int value)
     {
@@ -53,7 +53,7 @@ public:
     }
 
 private:
-    Subject *m_pSubject;
+    subject *m_pSubject;
 };
 
 /*
@@ -65,7 +65,7 @@ private:
 class ConcreteObserver2 : public Observer
 {
 public:
-    ConcreteObserver2(Subject *pSubject) : m_pSubject(pSubject){}
+    ConcreteObserver2(subject *pSubject) : m_pSubject(pSubject) {}
 
     void Update(int value)
     {
@@ -73,7 +73,7 @@ public:
     }
 
 private:
-    Subject *m_pSubject;
+    subject *m_pSubject;
 };
 
 /*
@@ -81,7 +81,7 @@ private:
  * 编写日期:18-9-11
  * 功能描述:当它的状态发生改变时，向它的各个观察者发出通知
  */
-class ConcreteSubject : public Subject
+class ConcreteSubject : public subject
 {
 public:
     void Attach(Observer *pObserver);
@@ -121,7 +121,7 @@ void ConcreteSubject::Notify()
 
 int main()
 {
-    // Create Subject
+    // Create subject
     ConcreteSubject *pSubject = new ConcreteSubject();
 
     // Create Observer

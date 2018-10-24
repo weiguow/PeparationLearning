@@ -10,7 +10,7 @@
 
 using namespace std;
 
-class Subject;
+class subject;
 /*
  * 类名：ShapeObserver
  * 作者：heldon 764165887@qq.com
@@ -21,9 +21,9 @@ class Subject;
 class ShapeObserver {
 protected:
     string m_name;
-    Subject *m_subject;
+    subject *m_subject;
 public:
-    ShapeObserver(string m_name,Subject *m_subject){
+    ShapeObserver(string m_name, subject *m_subject) {
         this->m_name = m_name;
         this->m_subject = m_subject;
     }
@@ -39,7 +39,7 @@ public:
  */
 class TwoDimensional : public ShapeObserver{
 public:
-    TwoDimensional(std::string m_name,Subject *m_subject) : ShapeObserver(m_name,m_subject){}
+    TwoDimensional(std::string m_name, subject *m_subject) : ShapeObserver(m_name, m_subject) {}
     void add_shape(TwoDimensional* twoDimensional);
     void remove_shape(TwoDimensional* twoDimensional);
     void draw();
@@ -56,7 +56,7 @@ protected:
  */
 class Circle : public TwoDimensional{
 public:
-    Circle(string m_name,Subject *m_subject) : TwoDimensional(m_name,m_subject){}
+    Circle(string m_name, subject *m_subject) : TwoDimensional(m_name, m_subject) {}
     virtual void draw();
 };
 
@@ -69,7 +69,7 @@ public:
  */
 class Triangle : public TwoDimensional{
 public:
-    Triangle(string m_name,Subject *m_subject) : TwoDimensional(m_name,m_subject){}
+    Triangle(string m_name, subject *m_subject) : TwoDimensional(m_name, m_subject) {}
     virtual void draw();
 };
 
@@ -82,7 +82,7 @@ public:
  */
 class Rectangle : public TwoDimensional{
 public:
-    Rectangle(string m_name,Subject *m_subject) : TwoDimensional(m_name,m_subject){}
+    Rectangle(string m_name, subject *m_subject) : TwoDimensional(m_name, m_subject) {}
     virtual void draw();
 };
 
@@ -95,7 +95,7 @@ public:
  */
 class ThreeDimensional : public ShapeObserver{
 public:
-    ThreeDimensional(string m_name,Subject *m_subject) : ShapeObserver(m_name,m_subject){}
+    ThreeDimensional(string m_name, subject *m_subject) : ShapeObserver(m_name, m_subject) {}
     void add_shape(ThreeDimensional* threeDimensional);
     void remove_shape(ThreeDimensional* threeDimensional);
     void draw();
@@ -112,7 +112,7 @@ protected:
  */
 class Sphere : public ThreeDimensional{
 public:
-    Sphere(string m_name,Subject *m_subject) : ThreeDimensional(m_name,m_subject){}
+    Sphere(string m_name, subject *m_subject) : ThreeDimensional(m_name, m_subject) {}
     virtual void draw();
 };
 
@@ -125,7 +125,7 @@ public:
  */
 class Pyramid : public ThreeDimensional{
 public:
-    Pyramid(string m_name,Subject *m_subject) : ThreeDimensional(m_name,m_subject){}
+    Pyramid(string m_name, subject *m_subject) : ThreeDimensional(m_name, m_subject) {}
     virtual void draw();
 };
 
@@ -138,18 +138,18 @@ public:
  */
 class Cuboid : public ThreeDimensional{
 public:
-    Cuboid(string m_name,Subject *m_subject) : ThreeDimensional(m_name,m_subject){}
+    Cuboid(string m_name, subject *m_subject) : ThreeDimensional(m_name, m_subject) {}
     virtual void draw();
 };
 
 /*
- * 类名：Subject
+ * 类名：subject
  * 作者：heldon 764165887@qq.com
  * 编写日期：18-9-14
  * 功能描述：目标类的抽象类
  * 版本：
  */
-class Subject{
+class subject {
 protected:
     list<ShapeObserver *> m_observers;
 public:
@@ -166,7 +166,7 @@ public:
  * 功能描述：具体目标类：画笔
  * 版本：
  */
-class Pencil : public Subject{
+class Pencil : public subject {
     /*
      * 函数名：attach
      * 作者：heldon 764165887@qq.com
@@ -325,7 +325,7 @@ void ThreeDimensional::remove_shape(ThreeDimensional *threeDimensional) {
 }
 
 int main(){
-    Subject *pencil = new Pencil();
+    subject *pencil = new Pencil();
     TwoDimensional *two = new TwoDimensional("二维图形",pencil);
     ThreeDimensional *three = new ThreeDimensional("三维图形",pencil);
     Circle *circle = new Circle("圆形",pencil);

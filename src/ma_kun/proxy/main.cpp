@@ -8,15 +8,15 @@
 using namespace std;
 
 /*
- * 类名：Subject
+ * 类名：subject
  * 作者：cooooooooooooooool
  * 编写日期：18-9-10
  * 功能描述：Subject类、抽象角色
  */
-class Subject {
+class subject {
 public:
     virtual void function() {
-        cout << "Subject" << endl;
+        cout << "subject" << endl;
     }
 };
 
@@ -26,7 +26,7 @@ public:
  * 编写日期：18-9-10
  * 功能描述：RealSubject类、真实角色
  */
-class RealSubject :public Subject {
+class RealSubject : public subject {
 public:
     virtual void function() {
         cout << "Hello World!" << endl;
@@ -39,7 +39,7 @@ public:
  * 编写日期：18-9-10
  * 功能描述：Proxy类、代理角色
  */
-class Proxy : public Subject {
+class Proxy : public subject {
     RealSubject m_real;
 public:
     virtual void function() {

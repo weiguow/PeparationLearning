@@ -20,12 +20,12 @@ public:
 };
 
 /*
- * 类名：Subject
+ * 类名：subject
  * 作者：张鸿泰 764165887@qq.com
  * 编写日期：18-9-13
  * 功能描述：目标类的接口
  */
-class Subject{
+class subject {
 public:
     virtual void attach(Observer *) = 0;
     virtual void detach(Observer *) = 0;
@@ -34,25 +34,25 @@ public:
 
 class ConcreteObserver1 : public Observer{
 public:
-    ConcreteObserver1(Subject *subject) : m_subject(subject){}
+    ConcreteObserver1(subject *subject) : m_subject(subject) {}
     void update(int value){
         cout<<"ConcreteObserver1 get the update, the new update is :"<<value<<endl;
     }
 private:
-    Subject *m_subject;
+    subject *m_subject;
 };
 
 class ConcreteObserver2 : public Observer{
 public:
-    ConcreteObserver2(Subject *subject) : m_subject(subject){}
+    ConcreteObserver2(subject *subject) : m_subject(subject) {}
     void update(int value){
         cout<<"ConcreteObserver2 get the update, the new update is :"<<value<<endl;
     }
 private:
-    Subject *m_subject;
+    subject *m_subject;
 };
 
-class ConcreteSubject : public Subject{
+class ConcreteSubject : public subject {
 public:
     void attach(Observer *observer);
     void detach(Observer *observer);

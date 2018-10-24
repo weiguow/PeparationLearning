@@ -1,0 +1,7 @@
+
+
+add_executable(lele_callback_first callback_first.cpp)
+
+add_executable(lele_callback_inside_class callback_inside_class.cpp)
+
+add_executable(lele_callback_inside_class2 callback_inside_class2.cpp)

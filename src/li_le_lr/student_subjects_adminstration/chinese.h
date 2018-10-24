@@ -7,79 +7,75 @@
 
 #include <iostream>
 #include <memory>
-
+#include <string>
 using std::ostream;
 using std::cout;
 using std::cin;
 using std::endl;
 using std::shared_ptr;
-
 using std::weak_ptr;
 using std::make_shared;
+using std::string;
+namespace lele {
+
+    class Chinese {
+
+    public:
+        Chinese() = delete;
+
+        explicit Chinese(shared_ptr<string> name, unsigned int id, int age);
 
 
-class Chinese {
+        // 拷贝构造函数
+        Chinese(const Chinese &c);
 
-public:
-    Chinese() = delete;
+        // 赋值运算符
+        Chinese &operator=(const Chinese &c);
 
-    explicit Chinese(shared_ptr<char*> name, unsigned int id, int age);
+        // 移动构造函数
+        Chinese(Chinese &&c)noexcept;
 
-    explicit Chinese(char* name, unsigned int id, int age );
+        const shared_ptr<string> &getMsp_name() const;
 
-    // 拷贝构造函数
-    Chinese(const Chinese &c);
+        void setMsp_name(const shared_ptr<string> &msp_name);
 
-    // 赋值运算符
-    Chinese &operator=(const Chinese &c);
+        unsigned int get_id();
 
-    // 移动构造函数
-//    Chinese(Chinese &&c)noexcept;
+        void set_id(unsigned int id);
 
-    shared_ptr<char*> get_name();
+        int getM_age() const;
 
-    void set_name( shared_ptr<char*> name);
+        void setM_age(int m_age);
 
-    unsigned int get_id();
+        // 虚函数
+        virtual void set_career(const shared_ptr<string> career);
 
-    void set_id(unsigned int id);
+        // 输出运算重载
+        friend ostream &operator<<(ostream &output, const Chinese &c) {
+            cout << " Chinese  operator<< begins" << endl;
 
-    int getM_age() const;
+            output << c.m_id << endl;
+            output << *c.msp_name << endl;
+            output << c.m_age << endl;
+            cout << " Chinese  operator<< ends" << endl;
 
-    void setM_age(int m_age);
+            return output;
+        }
 
-    // 虚函数
-    virtual void set_career(const char *career);
 
-    // 输出运算重载
-    friend ostream &operator<<(ostream &output, const Chinese &c) {
-        cout << " Chinese  operator<< begins" << endl;
+        // 虚析构函数
+        virtual ~Chinese();
 
-        output << c.m_id << endl;
-        output << *c.msp_name << endl;
-        output << c.m_age << endl;
-        cout << " Chinese  operator<< ends" << endl;
-
-        return output;
-    }
-
-    int getM_er() const;
-
-    void setM_er(int m_er);
-
-    // 虚析构函数
-    virtual ~Chinese();
-
-protected:
+    protected:
 //    char *mp_career;
 //    char *mp_name;
-    shared_ptr<char*> msp_career;
-    shared_ptr<char*> msp_name;
-    unsigned int m_id;
+        shared_ptr<string> msp_career;
+        shared_ptr<string> msp_name;
+        unsigned int m_id;
 
-private:
-    int m_age;
-    int m_er;
+    private:
+        int m_age;
 };
 
+}
 #endif //PEPARATIONLEARNING_CHINESE_H
