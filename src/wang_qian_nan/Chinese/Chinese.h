@@ -1,5 +1,5 @@
 //
-// Created by lilelr on 10/17/18.
+// Created by wqn on 18-10-17.
 //
 
 #ifndef PEPARATIONLEARNING_CHINESE_H
@@ -13,19 +13,21 @@ using std::cout;
 using std::cin;
 using std::endl;
 using std::shared_ptr;
-
+using std::unique_ptr;
 using std::weak_ptr;
 using std::make_shared;
+using std::make_unique;
 
 
-class Chinese {
-
+class Chinese
+{
 public:
+
+    //构造函数
     Chinese() = delete;
 
     explicit Chinese(shared_ptr<char*> name, unsigned int id, int age);
-
-    explicit Chinese(char* name, unsigned int id, int age );
+    explicit Chinese(char*name,unsigned int id,int age);
 
     // 拷贝构造函数
     Chinese(const Chinese &c);
@@ -33,53 +35,48 @@ public:
     // 赋值运算符
     Chinese &operator=(const Chinese &c);
 
-    // 移动构造函数
-//    Chinese(Chinese &&c)noexcept;
+    //成员函数
+    char *get_name();
 
-    shared_ptr<char*> get_name();
-
-    void set_name( shared_ptr<char*> name);
+    void set_name(const char* name);
 
     unsigned int get_id();
 
     void set_id(unsigned int id);
 
-    int getM_age() const;
+    int get_age();
 
-    void setM_age(int m_age);
+    void set_age(int age);
 
-    // 虚函数
-    virtual void set_career(const char *career);
 
-    // 输出运算重载
+    //virtual void set_caree(const char* career);
+
+    //输出运算符重载
     friend ostream &operator<<(ostream &output, const Chinese &c) {
         cout << " Chinese  operator<< begins" << endl;
 
         output << c.m_id << endl;
-        output << *c.msp_name << endl;
+        output << c.mp_name << endl;
         output << c.m_age << endl;
         cout << " Chinese  operator<< ends" << endl;
 
         return output;
     }
 
-    int getM_er() const;
-
-    void setM_er(int m_er);
-
-    // 虚析构函数
-    virtual ~Chinese();
+   //析构函数
+   ~Chinese();
 
 protected:
-//    char *mp_career;
-//    char *mp_name;
+    char *mp_career;
+    char *mp_name;
+
     shared_ptr<char*> msp_career;
     shared_ptr<char*> msp_name;
     unsigned int m_id;
 
 private:
     int m_age;
-    int m_er;
 };
+
 
 #endif //PEPARATIONLEARNING_CHINESE_H
