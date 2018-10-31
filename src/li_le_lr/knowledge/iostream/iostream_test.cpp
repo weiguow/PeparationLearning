@@ -1,5 +1,6 @@
 #include <iostream>
-
+#include <fstream>
+using namespace std;
 // reference: http://www.tutorialspoint.com/cplusplus/cpp_basic_input_output.htm
 int test_iostream_cout()
 {
@@ -57,6 +58,33 @@ int test_iostream_w()
     TestWide();
 
     return 0;
+}
+
+void test_fstream(){
+    fstream myfile;
+    myfile.open("c:\\1.txt",ios::out|ios::app,0);
+    if(!myfile)
+    {
+        cout<<"文件写错误,文件属性可能为只读!"<<endl;
+        system("pause");
+        exit(1);
+    }
+    myfile<<"白纸人生"<<endl<<"网址："<<"www.cppblog.com/andxie99"<<endl;
+    myfile.close();
+
+    myfile.open("c:\\1.txt",ios::in,0);
+    if(!myfile)
+    {
+        cout<<"文件读错误,文件可能丢失!"<<endl;
+        system("pause");
+        exit(1);
+    }
+    char ch;
+    while(myfile.get(ch))
+    {
+        cout.put(ch);
+    }
+    myfile.close();
 }
 
 int main(){
